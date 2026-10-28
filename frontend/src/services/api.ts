@@ -20,10 +20,17 @@ import type {
   ReasoningRuleDocumentation
 } from '../types';
 
+const getDefaultApiUrl = () => {
+  if (typeof window !== 'undefined' && window.location.hostname && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    return `http://${window.location.hostname}:8000`;
+  }
+  return 'http://localhost:8000';
+};
+
 const RAW_API_URL =
   (import.meta.env.VITE_API_URL as string | undefined) ||
   (import.meta.env.VITE_BACKEND_URL as string | undefined) ||
-  'http://localhost:8000';
+  getDefaultApiUrl();
 
 // Strip any trailing slash to prevent malformed double-slash API routes (e.g., https://api.render.com//api/health)
 const API_BASE_URL = RAW_API_URL.replace(/\/+$/, '');

@@ -21,7 +21,10 @@ class Settings:
         ).split(",")
         if origin.strip()
     ]
-    CORS_ORIGIN_REGEX: str = os.getenv("CORS_ORIGIN_REGEX", r"https://.*\.vercel\.app")
+    CORS_ORIGIN_REGEX: str = os.getenv(
+        "CORS_ORIGIN_REGEX",
+        r"https://.*\.vercel\.app|http://(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+)(:\d+)?"
+    )
 
     # Database URL: normalize postgres:// to postgresql:// for SQLAlchemy compatibility on Render
     _raw_db_url: str = os.getenv("DATABASE_URL", "sqlite:///./attendance_agent.db")
