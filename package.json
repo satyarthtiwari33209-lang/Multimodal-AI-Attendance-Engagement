@@ -1,0 +1,29 @@
+{
+  "name": "multimodal-attendance-engagement-agent",
+  "version": "1.0.0",
+  "description": "AI-Powered Multimodal Attendance Verification & Cognitive Engagement Agent with Vision, Audio, and Pedagogical Insights",
+  "private": true,
+  "scripts": {
+    "start:backend": "powershell -Command \"cd backend; .\\venv\\Scripts\\uvicorn main:app --reload --host 127.0.0.1 --port 8000\"",
+    "start:frontend": "npm --prefix frontend run dev",
+    "test:backend": "powershell -Command \"cd backend; .\\venv\\Scripts\\python.exe -m pytest -v\"",
+    "seed:backend": "powershell -Command \"cd backend; .\\venv\\Scripts\\python.exe seed_data.py\"",
+    "build": "npm --prefix frontend run build",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "keywords": [
+    "education-analytics",
+    "multimodal-ai",
+    "biometric-attendance",
+    "facial-recognition",
+    "gaze-tracking",
+    "drowsiness-detection",
+    "acoustic-analysis",
+    "fastapi",
+    "react",
+    "vite",
+    "sqlite"
+  ],
+  "author": "Antigravity AI",
+  "license": "MIT"
+}

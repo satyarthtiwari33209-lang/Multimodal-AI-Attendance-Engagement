@@ -1,0 +1,41 @@
+# Environments & Dependencies
+venv/
+backend/venv/
+.env
+backend/.env
+frontend/.env
+frontend/.env.local
+*.env
+node_modules/
+frontend/node_modules/
+
+# Build artifacts
+dist/
+frontend/dist/
+dist-ssr/
+frontend/dist-ssr/
+*.egg-info/
+build/
+
+# Python cache & test artifacts
+__pycache__/
+backend/**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+backend/.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases & uploads (ephemeral data)
+backend/attendance_agent.db
+attendance_agent.db
+backend/uploads/temp/*
+!backend/uploads/temp/.gitkeep
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
