@@ -227,30 +227,52 @@ graph TD
 ## 🚀 Setup & Launch Guide
 
 ### Prerequisites
-- **Python:** 3.10+ (Tested on Python 3.14 on Windows)
-- **Node.js:** 18+ (Tested on Node v24.11 / npm 11)
+- **Python:** 3.10+ (Tested on Python 3.11 on macOS ARM64 & Python 3.14 on Windows)
+- **Node.js:** 18+ (Tested on Node v20 / v22 & npm 10+)
+- **OS:** macOS (Apple Silicon / Intel), Linux, or Windows 10/11
 
 ---
 
-### Step 1: Backend Setup & Execution (Windows PowerShell)
+### Step 1: Backend Setup & Execution
 
-Open PowerShell and execute:
+#### macOS & Linux:
+```bash
+# 1. Navigate to the backend directory
+cd backend
 
+# 2. Create the Python virtual environment
+python3 -m venv venv
+
+# 3. Activate the virtual environment
+source venv/bin/activate
+
+# 4. Upgrade pip and install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# 5. Initialize SQLite database with seed records & rules
+python seed_data.py
+
+# 6. Start the FastAPI development server
+uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
+
+#### Windows PowerShell:
 ```powershell
 # 1. Navigate to the backend directory
-cd "e:\tiwaris project\backend"
+cd backend
 
-# 2. Create the Python virtual environment (if not already created)
+# 2. Create the Python virtual environment
 python -m venv venv
 
 # 3. Activate the virtual environment
 .\venv\Scripts\Activate.ps1
 
-# 4. Upgrade pip and install all backend dependencies
+# 4. Upgrade pip and install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# 5. Initialize SQLite database with pristine demo records & rule recommendations
+# 5. Initialize SQLite database with seed records & rules
 python seed_data.py
 
 # 6. Start the FastAPI development server
@@ -263,35 +285,46 @@ uvicorn main:app --reload --host 127.0.0.1 --port 8000
 
 ---
 
-### Step 2: Frontend Setup & Launch (Windows PowerShell)
+### Step 2: Frontend Setup & Launch
 
-Open a second PowerShell window and execute:
-
-```powershell
+```bash
 # 1. Navigate to the frontend directory
-cd "e:\tiwaris project\frontend"
+cd frontend
 
-# 2. Install Node dependencies (React 19, TypeScript, Lucide, Recharts)
+# 2. Install Node dependencies
 npm install
 
 # 3. Launch the Vite development server
 npm run dev
-
-# 4. Open the dashboard in your default browser
-Start-Process "http://localhost:5173"
 ```
 
 > 🌐 **Live Web Application URL:** `http://localhost:5173`
 
 ---
 
-## 🧪 Running Automated Tests
+### Quick Launch via Root Scripts
 
-Run the backend integration test suite across all 4 module suites (Core API, Vision Detector, Audio Intelligence, and Rule-Based Recommendation Agent):
-
+You can also run both services from the root folder:
 ```bash
-cd "e:\tiwaris project\backend"
-.\venv\Scripts\python.exe -m pytest -v
+# Terminal 1: Backend
+npm run start:backend
+
+# Terminal 2: Frontend
+npm run start:frontend
+```
+
+---
+
+## 🧪 Running Automated Tests & Type Checks
+
+### Backend Test Suite (37 Passing Tests)
+```bash
+cd backend
+# macOS / Linux
+python3 -m pytest -v
+
+# Windows
+python -m pytest -v
 ```
 
 Expected output:
@@ -333,13 +366,18 @@ tests/test_vision.py::test_detect_video_invalid_extension PASSED         [ 91%]
 tests/test_vision.py::test_retained_media_and_deletion_workflow PASSED   [ 94%]
 tests/test_vision.py::test_teacher_confirm_attendance_workflow PASSED    [ 97%]
 tests/test_vision.py::test_teacher_confirm_attendance_invalid_session PASSED [100%]
-======================= 37 passed in 4.35s =======================
+======================= 37 passed =======================
 ```
 
-To test frontend compilation:
+### Frontend Build & Lint Checks
 ```bash
-cd "e:\tiwaris project\frontend"
+cd frontend
+
+# Production TypeScript & Vite compile
 npm run build
+
+# Static analysis and linting
+npm run lint
 ```
 
 ---
